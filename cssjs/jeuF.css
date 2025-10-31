@@ -1,60 +1,82 @@
+/* === STRUCTURE GLOBALE === */
 body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: #f4f4f4;
+  font-family: Arial, sans-serif;      /* Police simple et lisible */
+  display: flex;                       /* Centrage de tout le contenu */
+  flex-direction: column;              /* Organisation verticale */
+  align-items: center;                 /* Centré horizontalement */
+  justify-content: center;             /* Centré verticalement */
+  height: 100vh;                       /* Prend toute la hauteur de la fenêtre */
+  background: #1a1a1a;                 /* Fond noir foncé, style Stade Toulousain */
+  color: white;                        /* Couleur du texte générale */
 }
 
+/* === TITRE DU JEU === */
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 20px;                 /* Espace sous le titre */
+  color: #d60000;                      /* Rouge Stade Toulousain */
+  text-shadow: 0 0 10px #ff0000;       /* Légère lueur rouge */
 }
 
+/* === GRILLE DE JEU === */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(5, 60px);
-  grid-template-rows: repeat(5, 60px);
-  gap: 5px;
+  display: grid;                       /* Utilise le mode grille CSS */
+  grid-template-columns: repeat(5, 60px); /* 5 colonnes de 60px */
+  grid-template-rows: repeat(5, 60px);    /* 5 lignes de 60px */
+  gap: 5px;                            /* Espacement entre les cases */
+  background: #000;                    /* Fond noir pour contraste */
+  padding: 10px;                       /* Un peu d’air autour */
+  border: 3px solid #d60000;           /* Contour rouge Stade Toulousain */
+  border-radius: 10px;                 /* Coins légèrement arrondis */
+  box-shadow: 0 0 20px #ff0000;        /* Lueur rouge autour */
 }
 
+/* === CASE DE LA GRILLE === */
 .cell {
-  width: 60px;
+  width: 60px;                         /* Taille carrée */
   height: 60px;
-  background: white;
-  border: 2px solid #333;
-  display: flex;
+  background: #222;                    /* Gris foncé, neutre par défaut */
+  border: 2px solid #555;              /* Contour gris discret */
+  display: flex;                       /* Centrage du texte (numéros) */
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  font-weight: bold;                   /* Numéros bien visibles */
+  color: white;                        /* Texte blanc */
+  cursor: pointer;                     /* Curseur main */
+  transition: all 0.2s ease;           /* Animation fluide sur hover/clic */
   position: relative;
 }
 
+/* Effet au survol d'une case libre */
 .cell:hover {
-  background: #ddd;
+  background: #333;                    /* Éclaircit un peu la case */
 }
 
+/* === CASE COCHÉE === */
 .checked {
-  background: #4caf50;
-  color: white;
-  cursor: default;
+  background: #d60000;                 /* Rouge Stade Toulousain */
+  color: white;                        /* Texte blanc lisible */
+  cursor: default;                     /* Plus de clic possible */
+  transform: scale(1.05);              /* Légère mise en avant visuelle */
+  box-shadow: 0 0 10px #ff0000;        /* Lueur rouge autour */
 }
 
+/* === DERNIÈRE CASE CLIQUÉE === */
 .current {
-  background: #2196f3 !important;
-  color: white;
+  background: #ff3333 !important;      /* Rouge plus clair pour la case actuelle */
+  color: #fff;
+  border-color: #fff;                  /* Contour blanc pour la repérer facilement */
+  box-shadow: 0 0 15px #ffffffaa;      /* Halo lumineux blanc */
 }
 
+/* === CASES CLIQUABLES SUIVANTES === */
 .clickable {
-  border-color: #ff9800;
-  box-shadow: 0 0 10px #ff9800;
+  border-color: #ffcc00;               /* Bordure jaune dorée (indication de possibilité) */
+  box-shadow: 0 0 15px #ffcc00aa;      /* Lueur dorée */
 }
 
+/* === ANIMATION DE MOUVEMENT INTERDIT === */
 .illegal {
-  animation: shake 0.3s;
+  animation: shake 0.3s;               /* Animation de secousse */
 }
 
 @keyframes shake {
@@ -65,34 +87,40 @@ h1 {
   100% { transform: translateX(0); }
 }
 
+/* === MESSAGE DE FIN / VICTOIRE === */
 #message {
-  margin-top: 20px;
-  font-size: 1.4rem;
-  color: #4caf50;
+  margin-top: 20px;                    /* Espacement au-dessus */
+  font-size: 1.4rem;                   /* Taille lisible */
+  color: #ffcc00;                      /* Jaune doré pour ressortir */
   font-weight: bold;
-  animation: fadeIn 1s ease;
+  animation: fadeIn 1s ease;           /* Apparition douce */
+  text-shadow: 0 0 8px #ff0000;        /* Lueur rouge légère */
 }
 
+/* Masque le message tant qu’il n’est pas activé */
 .hidden {
   display: none;
 }
 
+/* === BOUTON RESET === */
 #reset {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 20px;                    /* Espace au-dessus */
+  padding: 10px 25px;                  /* Taille confortable */
   font-size: 1rem;
-  background: #2196f3;
+  background: #d60000;                 /* Rouge Stade Toulousain */
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 8px;                  /* Coins arrondis */
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 #reset:hover {
-  background: #1976d2;
+  background: #ff0000;                 /* Rouge plus vif au survol */
+  transform: scale(1.05);              /* Légère mise en avant */
 }
 
+/* Animation d’apparition du message */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
